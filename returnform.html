@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>USMart - Return & Refund</title>
+
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+ 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+        <style>
+            /* Custom styles for the Return form page */
+            .return-form-container {
+                padding: 40px 0;
+            }
+            .return-box {
+                background: #fff;
+                border: 1px solid #E4E7ED;
+                padding: 30px;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+            .return-box h3 {
+                color: #4c2e71;
+                font-weight: 700;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #E4E7ED;
+                padding-bottom: 10px;
+            }
+            .input-group-addon {
+                background-color: #f5f5f5;
+                border-right: none;
+                border-radius: 4px 0 0 4px;
+            }
+            .form-control {
+                border-radius: 4px;
+            }
+            .input-group .form-control:not(:last-child) {
+                border-right: 1px solid #ccc;
+            }
+            .return-policy {
+                margin-top: 30px;
+                background: #fcf8e3;
+                border: 1px solid #faebcc;
+                padding: 15px;
+                border-radius: 4px;
+                color: #8a6d3b;
+            }
+            .return-policy strong {
+                color: #4c2e71;
+            }
+            .primary-btn {
+                background-color: #D10024;
+                border: 2px solid #D10024;
+                color: #FFF;
+                font-weight: 700;
+                text-transform: uppercase;
+                transition: 0.3s;
+            }
+            .primary-btn:hover {
+                background-color: #B0001D;
+            }
+            .error-message, .success-message {
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 15px;
+                display: none;
+            }
+            .error-message {
+                background-color: #f2dede;
+                color: #a94442;
+                border: 1px solid #ebccd1;
+            }
+            .success-message {
+                background-color: #dff0d8;
+                color: #3c763d;
+                border: 1px solid #d6e9c6;
+            }
+        </style>
+
+    </head>
+	<body>
+      <!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +60-4-653-3888</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> support@usmart.usm.my</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Universiti Sains Malaysia</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				<!-- Show these links when user is NOT logged in -->
+				<li id="SellerLink"><a href="profile.html"><i class="fa fa-tag"></i> Start Selling</a></li>
+				<li id="loginLink"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+				<li id="signupLink"><a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+				
+				<!-- Show this dropdown when user IS logged in (hidden by default) -->
+				<li id="userAccount" style="display: none;">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user-o"></i> My Account
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="my-listings.html"><i class="fa fa-list"></i> My Listings</a></li>
+						<li><a href="orders.html"><i class="fa fa-list-alt"></i> Order List</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="logout.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</div>
+
+						<div id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <a href="index.html" class="logo">
+                        <div class="usmart-text-logo">USM<span>art</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9 clearfix">
+                <div class="header-ctn d-flex justify-content-end align-items-center">
+                    <div>
+                        <a href="returnpage.html">
+                            <i class="fa fa-undo"></i>
+                            <span>Return Request</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="orderlist.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>My Orders</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>My Cart</span>
+                            <div class="qty">3</div>
+                        </a>
+                        <div class="cart-dropdown">
+                            <div class="cart-list">
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product01.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">Laptop</a></h3>
+                                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product02.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+                            </div>
+                            <div class="cart-summary">
+                                <small>3 Item(s) selected</small>
+                                <h5>SUBTOTAL: $2940.00</h5>
+                            </div>
+                            <div class="cart-btns">
+                                <a href="cart.html">View Cart</a>
+                                <a href="checkout.html">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </div>		
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Return & Refund Request</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">Returns</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section return-form-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="return-box">
+                            <h3>Submit a Return Request</h3>
+                            <p class="text-muted">Fill out the details below to initiate your return or refund process. We will review your request within 2 business days.</p>
+                            
+                            <form id="returnForm">
+                                
+                                <div class="form-group">
+                                    <label for="orderId">Order ID <span style="color:#D10024">*</span></label>
+                                    <input type="text" class="input" id="orderId" placeholder="e.g., 12345-6789" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="returnType">Request Type <span style="color:#D10024">*</span></label>
+                                    <select class="input-select input" id="returnType" required>
+                                        <option value="" disabled selected>Select Request Type</option>
+                                        <option value="return">Return for Refund</option>
+                                        <option value="refund">Refund Only (Item not received/Cancelled)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reason">Reason for Return/Refund <span style="color:#D10024">*</span></label>
+                                    <select class="input-select input" id="reason" required>
+                                        <option value="" disabled selected>Select Reason</option>
+                                        <option>Received incorrect item</option>
+                                        <option>Item arrived damaged/defective</option>
+                                        <option>Item description was inaccurate</option>
+                                        <option>Received too late</option>
+                                        <option>Other (Please describe in notes)</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="notes">Notes</label>
+                                    <textarea class="input" id="notes" rows="4" placeholder="Describe the issue in detail, including any contact with the seller."></textarea>
+                                </div>
+
+                                <button type="submit" class="primary-btn" id="submitBtn" style="width: 100%;" href="returnpage.html">Submit Return Request</button>
+
+                                <div id="errorMessage" class="error-message"></div>
+                                <div id="successMessage" class="success-message"></div>
+                            </form>
+                            
+                            <div class="return-policy">
+                                <strong>Important Return Information:</strong>
+                                <ul>
+                                    <li>Returns must be initiated within 7 days of delivery.</li>
+                                    <li>Items must be in the original condition (unless defective).</li>
+                                    <li>Refunds will be processed to your original payment method within 5-7 business days after the return is accepted.</li>
+                                </ul>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+        
+        <script>
+            // Function to get query parameters from the URL
+            function getQueryParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            // --- Initialization Logic ---
+            document.addEventListener('DOMContentLoaded', () => {
+                const orderIdInput = document.getElementById('orderId');
+                const prefilledOrderId = getQueryParameter('orderId');
+                
+                // If an orderId is found in the URL, pre-fill the input field
+                if (prefilledOrderId) {
+                    orderIdInput.value = prefilledOrderId;
+                    // Optionally disable the field if it was pre-filled to prevent user modification
+                    // orderIdInput.readOnly = true; 
+                    // orderIdInput.style.backgroundColor = '#f5f5f5';
+                }
+            });
+
+            // --- Form Submission Logic ---
+            document.getElementById('returnForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submitBtn');
+                const errorMessage = document.getElementById('errorMessage');
+                const successMessage = document.getElementById('successMessage');
+                
+                // Clear messages
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+
+                const orderId = document.getElementById('orderId').value.trim();
+                const returnType = document.getElementById('returnType').value;
+                const reason = document.getElementById('reason').value;
+                
+                // Simple validation check
+                if (!orderId || !returnType || !reason) {
+                    errorMessage.textContent = 'Please fill in all required fields (marked with *).';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+
+                // SIMULATE SUCCESS AND REDIRECT
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+                
+                successMessage.textContent = `Return Request for Order ID ${orderId} submitted successfully. Redirecting...`;
+                successMessage.style.display = 'block';
+
+                // Force redirection after a short delay
+                setTimeout(() => {
+                    // *** FIX APPLIED HERE: Redirecting to the correct tracking page ***
+                    window.location.href = 'returnpage.html'; 
+                }, 3000); 
+
+                // Reset button state (though it will be interrupted by redirect)
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Return Request';
+            });
+        </script>
+	</body>
+</html>

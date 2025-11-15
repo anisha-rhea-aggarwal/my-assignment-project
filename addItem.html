@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>USMart — Add Item</title>
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+		<!-- Bootstrap 3 CSS (Used by original template) -->
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+		<!-- Custom styles for Add Item form -->
+		<style>
+			.section {
+                padding: 40px 0;
+            }
+			.form-section-container {
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			.add-card {
+				background: #fff;
+				border: 1px solid #E4E7ED;
+				padding: 30px;
+				border-radius: 6px;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+			}
+			.add-card h3 {
+				color: #4c2e71;
+				font-weight: 700;
+				margin-bottom: 20px;
+				border-bottom: 2px solid #E4E7ED;
+				padding-bottom: 10px;
+			}
+			.input-select {
+				height: 40px;
+			}
+			/* Overriding template's general 'input' style for better compatibility */
+			.add-card .form-control, .add-card .input-select {
+				height: 40px;
+				padding: 8px 12px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				width: 100%;
+			}
+			.add-card textarea.form-control {
+				min-height: 120px;
+			}
+			.required::after { 
+				content: " *"; 
+				color: #D10024; 
+				font-weight: 700; 
+			}
+			.btn-publish {
+				background-color: #D10024;
+				border: none;
+				color: #FFF;
+				font-weight: 700;
+				text-transform: uppercase;
+				padding: 10px 20px;
+				border-radius: 4px;
+				transition: 0.3s;
+			}
+			.btn-publish:hover {
+				background-color: #B0001D;
+			}
+			.img-preview {
+				width: 100px; 
+				height: 80px; 
+				object-fit: cover; 
+				border-radius: 4px; 
+				margin-right: 10px;
+				border: 1px solid #eee;
+			}
+			.preview-container {
+				margin-top: 15px;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+			.alert-message {
+				margin-top: 15px;
+				padding: 10px;
+				border-radius: 4px;
+				display: none;
+			}
+			.alert-danger { background-color: #f2dede; color: #a94442; border: 1px solid #ebccd1; }
+			.alert-success { background-color: #dff0d8; color: #3c763d; border: 1px solid #d6e9c6; }
+		</style>
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +60-4-653-3888</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> support@usmart.usm.my</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Universiti Sains Malaysia</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				<!-- Show these links when user is NOT logged in -->
+				<li id="SellerLink"><a href="profile.html"><i class="fa fa-tag"></i> Start Selling</a></li>
+				<li id="loginLink"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+				<li id="signupLink"><a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+				
+				<!-- Show this dropdown when user IS logged in (hidden by default) -->
+				<li id="userAccount" style="display: none;">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user-o"></i> My Account
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="my-listings.html"><i class="fa fa-list"></i> My Listings</a></li>
+						<li><a href="orders.html"><i class="fa fa-list-alt"></i> Order List</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="logout.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</div>
+
+  <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="index.html" class="logo">
+                            <div class="usmart-text-logo">USM<span>art</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9 clearfix">
+                    <div class="header-ctn d-flex justify-content-end align-items-center">
+
+                        <div>
+                            <a href="mysale.html" class="account-link">
+                                <i class="fa fa-money fa-lg" aria-hidden="true"></i>
+                                <span>My Sale</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="returnseller.html" class="account-link">
+                                <i class="fa fa-refresh fa-lg" aria-hidden="true"></i>
+                                <span>Seller Returns</span>
+                            </a>
+                        </div>
+                        <div class="account-item">
+                            <a href="addItem.html" class="account-link">
+                                <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                            </a>
+                            <div class="account-label" color="#fff"> Sell / Add Item</div>
+                        </div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+		
+
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">List Item for Sale</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">Add Item</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION: ADD ITEM CONTENT -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-section-container">
+							<div class="add-card">
+								<h3>List a New Item for Sale</h3>
+								<p class="text-muted">Make sure the details are accurate — buyers love honest listings.</p>
+
+								<form id="addItemForm" class="mt-4" enctype="multipart/form-data">
+									<div class="row">
+										
+										<div class="col-md-6 form-group">
+											<label class="required">Title</label>
+											<input type="text" class="form-control" id="title" name="title" placeholder="e.g., iPhone 11 - Good condition" required>
+										</div>
+
+										<div class="col-md-6 form-group">
+											<label class="required">Category</label>
+											<select class="form-control input-select" id="category" name="category" required>
+												<option value="">Choose...</option>
+												<option>Mobile / Phone</option>
+												<option>Laptop / Tablet</option>
+												<option>Electronics / Appliances</option>
+												<option>Furniture</option>
+												<option>Books / Stationery</option>
+												<option>Other</option>
+											</select>
+										</div>
+
+										<div class="col-md-4 form-group">
+											<label class="required">Condition</label>
+											<select class="form-control input-select" id="condition" name="condition" required>
+												<option value="">Select</option>
+												<option>Brand new</option>
+												<option>Like new</option>
+												<option>Good</option>
+												<option>Fair</option>
+												<option>For parts</option>
+											</select>
+										</div>
+
+										<div class="col-md-4 form-group">
+											<label class="required">Price (MYR)</label>
+											<input type="number" min="0" step="0.01" class="form-control" id="price" name="price" placeholder="e.g., 350.00" required>
+										</div>
+
+										<div class="col-md-4 form-group">
+											<label>Prefer contact method</label>
+											<select class="form-control input-select" id="contactMethod" name="contactMethod">
+												<option>WhatsApp</option>
+												<option>Email</option>
+												<option>In-app message</option>
+											</select>
+										</div>
+
+										<div class="col-12 form-group">
+											<label class="required">Description</label>
+											<textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe the item, defects, included accessories, reason for selling..." required></textarea>
+										</div>
+
+										<div class="col-md-6 form-group">
+											<label class="required">Location (campus/hostel)</label>
+											<input type="text" class="form-control" id="location" name="location" placeholder="e.g., Main Campus, Block D" required>
+										</div>
+
+										<div class="col-md-6 form-group">
+											<label>Tags (separate by comma)</label>
+											<input type="text" class="form-control" id="tags" name="tags" placeholder="e.g., phone,apple,ios">
+											<p class="small text-muted">Tags help others search — keep short keywords.</p>
+										</div>
+
+										<div class="col-12 form-group">
+											<label class="required">Upload images</label>
+											<input class="form-control" type="file" id="images" name="images" accept="image/*" multiple required>
+											<p class="small text-muted">Recommended: 3–6 photos. Max 5 MB per image.</p>
+											<div class="preview-container" id="previewContainer" aria-live="polite"></div>
+											<div id="imgError" class="alert-message alert-danger">Please upload at least one valid image (jpg/png/webp) under 5MB.</div>
+										</div>
+										
+										<div class="col-md-6 form-group">
+											<label class="required">Availability</label>
+											<select class="form-control input-select" id="availability" name="availability" required>
+												<option>Available</option>
+												<option>Reserved</option>
+												<option>Sold</option>
+											</select>
+										</div>
+										
+										<div class="col-md-6 form-group text-right">
+											<button type="submit" class="btn btn-publish">Publish item</button>
+										</div>
+									</div>
+								</form>
+								
+								<p class="small text-muted mt-3">By publishing you confirm the item is yours and you agree to USMart's <a href="/terms.html">terms</a>.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION: ADD ITEM CONTENT -->
+        
+		<!-- NEWSLETTER (Copied from index.html) -->
+		<div id="newsletter" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<form>
+								<input class="input" type="email" placeholder="Enter Your Email">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /NEWSLETTER -->
+
+		<!-- FOOTER (Copied from index.html) -->
+		<footer id="footer">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">About Us</h3>
+								<p>USMart is USM's trusted student marketplace for buying and selling secondhand items. We connect students across campus to trade electronics, furniture, books, and more in a safe and convenient platform. Save money, reduce waste, and support your fellow students with USMart!</p>
+								<ul class="footer-links">
+									<li><a href="#"><i class="fa fa-map-marker"></i>Universiti Sains Malaysia</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+60-4-653-3888</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>support@usmart.usm.my</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Categories</h3>
+								<ul class="footer-links">
+									<li><a href="#">Hot deals</a></li>
+									<li><a href="#">Laptops</a></li>
+									<li><a href="#">Smartwatches</a></li>
+									<li><a href="#">Cameras</a></li>
+									<li><a href="#">Headphones</a></li>
+									<li><a href="#">Smartphones</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix visible-xs"></div>
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Information</h3>
+								<ul class="footer-links">
+									<li><a href="#">About Us</a></li>
+									<li><a href="#">Contact Us</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="#">Orders and Returns</a></li>
+									<li><a href="#">Terms & Conditions</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Service</h3>
+								<ul class="footer-links">
+									<li><a href="#">My Account</a></li>
+									<li><a href="#">View Cart</a></li>
+									<li><a href="#">Wishlist</a></li>
+									<li><a href="#">Track My Order</a></li>
+									<li><a href="#">Help</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							</ul>
+							<span class="copyright">
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script>
+			// Client-side form handling & image preview
+			(function(){
+				const form = document.getElementById('addItemForm');
+				const imagesInput = document.getElementById('images');
+				const previewContainer = document.getElementById('previewContainer');
+				const imgError = document.getElementById('imgError');
+
+				const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+				const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+				function clearPreview(){ previewContainer.innerHTML = ''; }
+
+				imagesInput.addEventListener('change', () => {
+					clearPreview();
+					imgError.style.display = 'none';
+					const files = Array.from(imagesInput.files).slice(0,6); // limit preview to first 6
+					
+					let hasError = false;
+
+					files.forEach(file => {
+						if (!ALLOWED_TYPES.includes(file.type) || file.size > MAX_FILE_SIZE) {
+							hasError = true;
+							return;
+						}
+						const reader = new FileReader();
+						reader.onload = e => {
+							const img = document.createElement('img');
+							img.className = 'img-preview';
+							img.src = e.target.result;
+							previewContainer.appendChild(img);
+						};
+						reader.readAsDataURL(file);
+					});
+					
+					if (hasError || files.length === 0) {
+						imgError.style.display = 'block';
+					}
+				});
+
+				// Basic required field validation before submission
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					
+					// Clear previous image error display
+					imgError.style.display = 'none';
+
+					let isValid = true;
+					// Check all required fields (simple check)
+					form.querySelectorAll('[required]').forEach(input => {
+						if (!input.value.trim()) {
+							isValid = false;
+							// In a simple environment, a basic alert/message is used instead of Bootstrap's native validation feedback
+						}
+					});
+
+					// Image validation
+					const files = Array.from(imagesInput.files);
+					if (files.length === 0) {
+						isValid = false;
+						imgError.textContent = 'Please upload at least one image.';
+						imgError.style.display = 'block';
+					} else {
+						for (const f of files) {
+							if (!ALLOWED_TYPES.includes(f.type) || f.size > MAX_FILE_SIZE) {
+								isValid = false;
+								imgError.textContent = `File "${f.name}" is invalid (must be JPG/PNG/WebP under 5MB).`;
+								imgError.style.display = 'block';
+								break;
+							}
+						}
+					}
+
+					if (!isValid) {
+						// Optionally display a generic error if any required field is empty (not implemented here to keep validation simple)
+						return;
+					}
+
+					// Proceed with mock publish logic
+					const btn = form.querySelector('.btn-publish');
+					btn.disabled = true;
+					btn.textContent = 'Publishing...';
+
+					try {
+						// --- MOCK PUBLISH SUCCESS ---
+						await new Promise(resolve => setTimeout(resolve, 1500));
+						// --- END MOCK PUBLISH SUCCESS ---
+
+						// On success, typically redirect to the new item's page or the user's listings page
+						alert('Item published successfully! Redirecting to Home Page.');
+						window.location.href = 'index.html'; 
+
+					} catch (err) {
+						alert('Failed to publish: ' + (err.message || 'Unknown mock error'));
+						btn.disabled = false;
+						btn.textContent = 'Publish item';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

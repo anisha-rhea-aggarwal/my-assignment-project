@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>USMart - My Orders</title>
+
+ 		<!-- Google font -->
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+ 		<!-- Bootstrap -->
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+ 		<!-- Font Awesome Icon -->
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+ 		<!-- Custom stlylesheet -->
+ 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+        <style>
+            .section {
+                padding: 40px 0;
+            }
+            .order-table {
+                width: 100%;
+                background-color: #fff;
+                border: 1px solid #E4E7ED;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+            .order-table th, .order-table td {
+                padding: 15px;
+                vertical-align: middle;
+            }
+            .order-table thead tr {
+                border-bottom: 2px solid #D10024;
+                background-color: #f9f9f9;
+            }
+            .order-table tbody tr {
+                border-bottom: 1px solid #E4E7ED;
+            }
+            .order-table tbody tr:last-child {
+                border-bottom: none;
+            }
+            .order-status-pill {
+                padding: 5px 10px;
+                border-radius: 4px;
+                font-weight: 600;
+                display: inline-block;
+            }
+            .status-pending { background-color: #ffc107; color: #343a40; }
+            .status-shipped { background-color: #007bff; color: #fff; }
+            .status-delivered { background-color: #28a745; color: #fff; }
+            .status-completed { background-color: #6c757d; color: #fff; }
+
+            .btn-confirm-receipt {
+                background-color: #28a745;
+                color: #fff;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 4px;
+                font-weight: 700;
+                transition: 0.3s;
+            }
+            .btn-confirm-receipt:hover {
+                background-color: #218838;
+            }
+            .btn-return {
+                background-color: #ffc107;
+                color: #343a40;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 4px;
+                font-weight: 700;
+                transition: 0.3s;
+            }
+            .btn-return:hover {
+                background-color: #e0a800;
+            }
+            .no-orders-message {
+                text-align: center;
+                padding: 50px;
+                border: 1px dashed #E4E7ED;
+                border-radius: 6px;
+                margin-top: 20px;
+                background-color: #fcfcfc;
+            }
+            .modal-content {
+                border-radius: 12px;
+            }
+            .modal-header {
+                border-bottom: none;
+            }
+            .modal-footer {
+                border-top: none;
+            }
+            .primary-btn-red {
+                background-color: #D10024;
+                color: #FFF;
+                border: 2px solid #D10024;
+                font-weight: 700;
+                text-transform: uppercase;
+                padding: 10px 20px;
+                border-radius: 4px;
+                transition: 0.3s;
+            }
+            .primary-btn-red:hover {
+                background-color: #B0001D;
+                color: #FFF;
+            }
+        </style>
+    </head>
+	<body>
+        <!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +60-4-653-3888</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> support@usmart.usm.my</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Universiti Sains Malaysia</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				<!-- Show these links when user is NOT logged in -->
+				<li id="SellerLink"><a href="profile.html"><i class="fa fa-tag"></i> Start Selling</a></li>
+				<li id="loginLink"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+				<li id="signupLink"><a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+				
+				<!-- Show this dropdown when user IS logged in (hidden by default) -->
+				<li id="userAccount" style="display: none;">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user-o"></i> My Account
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="my-listings.html"><i class="fa fa-list"></i> My Listings</a></li>
+						<li><a href="orders.html"><i class="fa fa-list-alt"></i> Order List</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="logout.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</div>
+
+			<div id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <a href="index.html" class="logo">
+                        <div class="usmart-text-logo">USM<span>art</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9 clearfix">
+                <div class="header-ctn d-flex justify-content-end align-items-center">
+                    <div>
+                        <a href="returnpage.html">
+                            <i class="fa fa-undo"></i>
+                            <span>Return Request</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="orderlist.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>My Orders</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>My Cart</span>
+                            <div class="qty">3</div>
+                        </a>
+                        <div class="cart-dropdown">
+                            <div class="cart-list">
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product01.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">Laptop</a></h3>
+                                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product02.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+                            </div>
+                            <div class="cart-summary">
+                                <small>3 Item(s) selected</small>
+                                <h5>SUBTOTAL: $2940.00</h5>
+                            </div>
+                            <div class="cart-btns">
+                                <a href="cart.html">View Cart</a>
+                                <a href="checkout.html">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </div>
+		</header>
+		<!-- /HEADER -->
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">My Orders</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">My Orders</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">My Purchased Items</h3>
+						</div>
+                        
+                        <!-- REMOVED: Loading indicator HTML -->
+
+                        <div id="ordersTableContainer" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table order-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ordersList">
+                                        <!-- Orders will be injected here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="noOrders" class="no-orders-message" style="display: none;">
+                            <i class="fa fa-shopping-bag fa-3x mb-3" style="color:#D10024;"></i>
+                            <h4>Your order history is empty!</h4>
+                            <p>Once you purchase an item, it will appear here for tracking.</p>
+                            <a href="index.html" class="primary-btn-red">Start Shopping</a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION -->
+
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="confirmModalLabel">Confirm Item Receipt</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to confirm that you have **received** this order (<strong id="modalOrderId"></strong>)?</p>
+                        <p>This action marks the order as complete and authorizes payment release to the seller.</p>
+                        <div id="confirmError" class="alert alert-danger" style="display:none; margin-top:15px;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-confirm-receipt" id="confirmReceiptBtn">Confirm and Complete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Confirmation Modal -->
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+        <!-- Custom Script with Mock Data -->
+        <script>
+            // --- MOCK DATA ---
+            // Data structure for demonstration without a real backend/database
+            const dummyOrders = [
+                { id: 'ORD-1001', productId: 'P-A123', name: 'Macbook Air M1', price: 350.00, qty: 1, total: 350.00, status: 'Delivered', deliveryDate: '2023-11-01' },
+                { id: 'ORD-1002', productId: 'P-B456', name: 'Noise Cancelling Headphones', price: 150.00, qty: 2, total: 300.00, status: 'Shipped', deliveryDate: '2023-11-05' },
+                { id: 'ORD-1003', productId: 'P-C789', name: 'Asus Lightweight Laptop', price: 750.00, qty: 1, total: 750.00, status: 'Pending', deliveryDate: null },
+                { id: 'ORD-1004', productId: 'P-D012', name: 'Rekam Video Camera', price: 350.00, qty: 1, total: 350.00, status: 'Completed', deliveryDate: '2023-10-25' },
+            ];
+            
+            // --- UI ELEMENTS ---
+            // Note: loadingEl is no longer used but kept for completeness if needed later
+            const tableContainerEl = document.getElementById('ordersTableContainer');
+            const listEl = document.getElementById('ordersList');
+            const noOrdersEl = document.getElementById('noOrders');
+            const modalOrderIdEl = document.getElementById('modalOrderId');
+            const confirmErrorEl = document.getElementById('confirmError');
+            const confirmReceiptBtn = document.getElementById('confirmReceiptBtn');
+
+            let currentOrderToConfirm = null;
+            
+            // Helper function to get status pill HTML
+            function getStatusPill(status) {
+                let statusClass = 'status-pending';
+                if (status === 'Shipped') statusClass = 'status-shipped';
+                if (status === 'Delivered') statusClass = 'status-delivered';
+                if (status === 'Completed') statusClass = 'status-completed';
+
+                return `<span class="order-status-pill ${statusClass}">${status}</span>`;
+            }
+            
+            // --- DATA RENDERER ---
+            function renderOrders(orders) {
+                listEl.innerHTML = '';
+                
+                if (orders.length === 0) {
+                    tableContainerEl.style.display = 'none';
+                    noOrdersEl.style.display = 'block';
+                    return;
+                }
+
+                orders.forEach(order => {
+                    const row = listEl.insertRow();
+                    let actions = '';
+                    
+                    if (order.status === 'Delivered') {
+                        // User can confirm receipt OR request return
+                        actions = `
+                            <button class="btn btn-confirm-receipt btn-sm" data-order-id="${order.id}" data-toggle="modal" data-target="#confirmModal">
+                                <i class="fa fa-check"></i> Confirmed
+                            </button>
+                            <a href="returnform.html?orderId=${order.id}" class="btn btn-return btn-sm mt-1">
+                                <i class="fa fa-undo"></i> Return
+                            </a>
+                        `;
+                    } else if (order.status === 'Completed') {
+                        // Order is completed, only return option is available
+                        actions = `
+                            <span class="text-success">Completed</span>
+                            <a href="returnform.html?orderId=${order.id}" class="btn btn-return btn-sm mt-1">
+                                <i class="fa fa-undo"></i> Return
+                            </a>
+                        `;
+                    } else if (order.status === 'Shipped') {
+                         // Only option is to track/wait
+                        actions = '<span class="text-info">In Transit</span>';
+                    } else {
+                        actions = `<span class="text-muted">${order.status}</span>`;
+                    }
+
+                    row.innerHTML = `
+                        <td><strong>#${order.id}</strong></td>
+                        <td>${order.name}</td>
+                        <td>${order.qty}</td>
+                        <td>RM${order.total.toFixed(2)}</td>
+                        <td>${getStatusPill(order.status)}</td>
+                        <td class="text-center">${actions}</td>
+                    `;
+                });
+
+                noOrdersEl.style.display = 'none';
+                tableContainerEl.style.display = 'block';
+            }
+
+            // --- CONFIRM RECEIPT LOGIC ---
+            // Set data for the modal when opened
+            $('#confirmModal').on('show.bs.modal', function(event) {
+                const button = $(event.relatedTarget); // Button that triggered the modal
+                currentOrderToConfirm = button.data('order-id');
+                modalOrderIdEl.textContent = currentOrderToConfirm;
+                confirmErrorEl.style.display = 'none';
+                confirmReceiptBtn.disabled = false;
+                confirmReceiptBtn.textContent = 'Confirm and Complete';
+            });
+
+            // Handle confirmation button click
+            confirmReceiptBtn.addEventListener('click', async () => {
+                confirmReceiptBtn.disabled = true;
+                confirmReceiptBtn.textContent = 'Processing...';
+                confirmErrorEl.style.display = 'none';
+
+                if (!currentOrderToConfirm) {
+                    confirmErrorEl.textContent = 'Error: Order ID missing.';
+                    confirmErrorEl.style.display = 'block';
+                    confirmReceiptBtn.disabled = false;
+                    confirmReceiptBtn.textContent = 'Confirm and Complete';
+                    return;
+                }
+
+                try {
+                    // --- MOCK LOGIC: Simulate successful update ---
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Update mock data locally for immediate visual feedback
+                    const orderIndex = dummyOrders.findIndex(o => o.id === currentOrderToConfirm);
+                    if (orderIndex > -1) {
+                        dummyOrders[orderIndex].status = 'Completed';
+                        renderOrders(dummyOrders);
+                    }
+                    // --- END MOCK LOGIC ---
+
+                    // Hide modal
+                    $('#confirmModal').modal('hide');
+                    console.log(`Order ${currentOrderToConfirm} confirmed successfully and marked as Completed.`);
+
+                } catch (error) {
+                    console.error("Error confirming receipt:", error);
+                    confirmErrorEl.textContent = 'An error occurred while completing the order. Please try again.';
+                    confirmErrorEl.style.display = 'block';
+                    confirmReceiptBtn.disabled = false;
+                } finally {
+                    confirmReceiptBtn.textContent = 'Confirm and Complete';
+                }
+            });
+
+            // Initialize page with mock data
+            document.addEventListener('DOMContentLoaded', () => {
+                renderOrders(dummyOrders);
+            });
+        </script>
+	</body>
+</html>

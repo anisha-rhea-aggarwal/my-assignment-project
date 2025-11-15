@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <title>Shopping Cart - Electro</title> <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+ 		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+ 		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+ 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		
+		<style>
+			/* Added styles for a clean cart table */
+			.cart-table {
+				width: 100%;
+				background-color: #fff;
+				border: 1px solid #E4E7ED;
+				border-radius: 4px;
+				margin-bottom: 20px;
+			}
+			.cart-table th, .cart-table td {
+				padding: 15px;
+				vertical-align: middle;
+			}
+			.cart-table thead tr {
+				border-bottom: 1px solid #E4E7ED;
+				background-color: #f9f9f9;
+			}
+			.cart-table tbody tr {
+				border-bottom: 1px solid #E4E7ED;
+			}
+			.cart-table tbody tr:last-child {
+				border-bottom: none;
+			}
+			.cart-table .product-img {
+				width: 80px;
+			}
+			.cart-table .qty-input {
+				width: 80px;
+			}
+			.cart-table .delete-btn {
+				color: #D10024;
+				font-size: 1.2em;
+			}
+			.cart-table .delete-btn:hover {
+				color: #a0001c;
+			}
+		</style>
+
+		</head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +60-4-653-3888</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> support@usmart.usm.my</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Universiti Sains Malaysia</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				<!-- Show these links when user is NOT logged in -->
+				<li id="SellerLink"><a href="profile.html"><i class="fa fa-tag"></i> Start Selling</a></li>
+				<li id="loginLink"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+				<li id="signupLink"><a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+				
+				<!-- Show this dropdown when user IS logged in (hidden by default) -->
+				<li id="userAccount" style="display: none;">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user-o"></i> My Account
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="my-listings.html"><i class="fa fa-list"></i> My Listings</a></li>
+						<li><a href="orders.html"><i class="fa fa-list-alt"></i> Order List</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="logout.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</div>
+
+			<div id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <a href="index.html" class="logo">
+                        <div class="usmart-text-logo">USM<span>art</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9 clearfix">
+                <div class="header-ctn d-flex justify-content-end align-items-center">
+                    <div>
+                        <a href="returnpage.html">
+                            <i class="fa fa-undo"></i>
+                            <span>Return Request</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="orderlist.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>My Orders</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>My Cart</span>
+                            <div class="qty">3</div>
+                        </a>
+                        <div class="cart-dropdown">
+                            <div class="cart-list">
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product01.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">Laptop</a></h3>
+                                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product02.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+                            </div>
+                            <div class="cart-summary">
+                                <small>3 Item(s) selected</small>
+                                <h5>SUBTOTAL: $2940.00</h5>
+                            </div>
+                            <div class="cart-btns">
+                                <a href="cart.html">View Cart</a>
+                                <a href="checkout.html">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </div>	
+
+	
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Shopping Cart</h3> <ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">Shopping Cart</li> </ul>
+					</div>
+				</div>
+				</div>
+			</div>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-7">
+						<div class="section-title">
+							<h3 class="title">Items in Your Cart</h3>
+						</div>
+						
+						<table class="cart-table">
+							<thead>
+								<tr>
+									<th style="width: 80px;"></th> <th>Product</th>
+									<th>Price</th>
+									<th style="width: 100px;">Quantity</th>
+									<th>Total</th>
+									<th style="width: 40px;"></th> </tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><img src="./img/product01.png" alt="" class="product-img"></td>
+									<td><strong>Product Name Goes Here</strong></td>
+									<td>$980.00</td>
+									<td>
+										<input class="input qty-input" type="number" value="1" min="1">
+									</td>
+									<td><strong class="price">$980.00</strong></td>
+									<td>
+										<a href="#" class="delete-btn"><i class="fa fa-close"></i></a>
+									</td>
+								</tr>
+								<tr>
+									<td><img src="./img/product02.png" alt="" class="product-img"></td>
+									<td><strong>Another Product Name</strong></td>
+									<td>$980.00</td>
+									<td>
+										<input class="input qty-input" type="number" value="2" min="1">
+									</td>
+									<td><strong class="price">$1960.00</strong></td>
+									<td>
+										<a href="#" class="delete-btn"><i class="fa fa-close"></i></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<a href="index.html" class="primary-btn">Continue Shopping</a>
+						<a href="#" class="primary-btn" style="float: right;">Update Cart</a>
+					</div>
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Cart Summary</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div>Subtotal</div>
+								<div>$2940.00</div> </div>
+							<div class="order-col">
+								<div>Shipping</div>
+								<div><strong>FREE</strong></div>
+							</div>
+							<div class="order-col">
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">$2940.00</strong></div> </div>
+						</div>
+						
+						<div class="payment-method" style="margin-top: 20px;">
+							<div class="form-group">
+								<input class="input" type="text" placeholder="Enter Coupon Code">
+							</div>
+							<a href="#" class="primary-btn order-submit" style="text-align: center; margin-bottom: 15px;">Apply Coupon</a>
+						</div>
+						
+						<a href="checkout.html" class="primary-btn order-submit" style="display: block; text-align: center;">Proceed to Checkout</a>
+					</div>
+					</div>
+				</div>
+			</div>
+		<div id="newsletter" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<form>
+								<input class="input" type="email" placeholder="Enter Your Email">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		<footer id="footer">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">About Us</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<ul class="footer-links">
+									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Categories</h3>
+								<ul class="footer-links">
+									<li><a href="#">Hot deals</a></li>
+									<li><a href="#">Laptops</a></li>
+									<li><a href="#">Smartphones</a></li>
+									<li><a href="#">Cameras</a></li>
+									<li><a href="#">Accessories</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="clearfix visible-xs"></div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Information</h3>
+								<ul class="footer-links">
+									<li><a href="#">About Us</a></li>
+									<li><a href="#">Contact Us</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="#">Orders and Returns</a></li>
+									<li><a href="#">Terms & Conditions</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Service</h3>
+								<ul class="footer-links">
+									<li><a href="#">My Account</a></li>
+									<li><a href="#">View Cart</a></li>
+									<li><a href="#">Wishlist</a></li>
+									<li><a href="#">Track My Order</a></li>
+									<li><a href="#">Help</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							</ul>
+							<span class="copyright">
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							</span>
+						</div>
+					</div>
+						</div>
+				</div>
+			</footer>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+</html>

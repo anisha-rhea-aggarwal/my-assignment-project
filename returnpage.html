@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>USMart - My Returns</title>
+
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+ 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+        <style>
+            .section {
+                padding: 40px 0;
+            }
+            .table-responsive {
+                border: 1px solid #E4E7ED;
+                border-radius: 6px;
+                background: #fff;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+            .table thead tr {
+                background-color: #f9f9f9;
+            }
+            .table tbody tr:hover {
+                background-color: #f5f5f5;
+            }
+            .table > tbody > tr > td, .table > thead > tr > th {
+                vertical-align: middle;
+                padding: 15px;
+            }
+            .status-pending { background-color: #fff3cd; color: #856404; font-weight: 600; padding: 5px 10px; border-radius: 4px; }
+            .status-processing { background-color: #cce5ff; color: #004085; font-weight: 600; padding: 5px 10px; border-radius: 4px; }
+            .status-rejected { background-color: #f8d7da; color: #721c24; font-weight: 600; padding: 5px 10px; border-radius: 4px; }
+            .status-completed { background-color: #d4edda; color: #155724; font-weight: 600; padding: 5px 10px; border-radius: 4px; }
+            .no-requests {
+                text-align: center;
+                padding: 50px;
+                border: 1px dashed #E4E7ED;
+                border-radius: 6px;
+                margin-top: 20px;
+                background-color: #fcfcfc;
+            }
+            .header-info-box {
+                background: #e6e0f0;
+                padding: 15px;
+                border-radius: 6px;
+                margin-bottom: 30px;
+            }
+        </style>
+
+    </head>
+	<body>
+      <!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +60-4-653-3888</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> support@usmart.usm.my</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Universiti Sains Malaysia</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				<!-- Show these links when user is NOT logged in -->
+				<li id="SellerLink"><a href="profile.html"><i class="fa fa-tag"></i> Start Selling</a></li>
+				<li id="loginLink"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+				<li id="signupLink"><a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+				
+				<!-- Show this dropdown when user IS logged in (hidden by default) -->
+				<li id="userAccount" style="display: none;">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user-o"></i> My Account
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="my-listings.html"><i class="fa fa-list"></i> My Listings</a></li>
+						<li><a href="orders.html"><i class="fa fa-list-alt"></i> Order List</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="logout.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</div>
+
+			<div id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <a href="index.html" class="logo">
+                        <div class="usmart-text-logo">USM<span>art</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9 clearfix">
+                <div class="header-ctn d-flex justify-content-end align-items-center">
+                    <div>
+                        <a href="returnpage.html">
+                            <i class="fa fa-undo"></i>
+                            <span>Return Request</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="orderlist.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>My Orders</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>My Cart</span>
+                            <div class="qty">3</div>
+                        </a>
+                        <div class="cart-dropdown">
+                            <div class="cart-list">
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product01.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">Laptop</a></h3>
+                                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product02.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                    </div>
+                                    <button class="delete"><i class="fa fa-close"></i></button>
+                                </div>
+                            </div>
+                            <div class="cart-summary">
+                                <small>3 Item(s) selected</small>
+                                <h5>SUBTOTAL: $2940.00</h5>
+                            </div>
+                            <div class="cart-btns">
+                                <a href="cart.html">View Cart</a>
+                                <a href="checkout.html">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </div>	
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">My Return & Refund Requests</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">My Returns</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+                        <div class="header-info-box">
+                            <p class="mb-0">You can track the status of all your submitted return requests here. If you need to submit a new request, please visit the <a href="returnform.html">Return Request Form</a>.</p>
+                        </div>
+                        
+                        <div id="requestsTableContainer"> 
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Request ID</th>
+                                            <th>Order ID</th>
+                                            <th>Type</th>
+                                            <th>Reason</th>
+                                            <th>Submitted On</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="returnsList">
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="noRequests" class="no-requests" style="display: none;">
+                            <i class="fa fa-frown-o fa-3x mb-3" style="color:#D10024;"></i>
+                            <h4>No Return Requests Found</h4>
+                            <p>It looks like you haven't submitted any return or refund requests yet.</p>
+                            <a href="returnform.html" class="primary-btn">Start a Return</a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="module">
+            // This entire script block is modified to run without a live database connection.
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+            import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+            
+            // --- FIREBASE CONFIGURATION (RETAINED FOR SCRIPT COMPLETENESS) ---
+            const appId = 'default-app-id'; // Placeholder
+            const firebaseConfig = {}; // Placeholder
+
+            // Initialize app to avoid console errors
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app); 
+            
+            // --- UI ELEMENTS ---
+            const tableContainerEl = document.getElementById('requestsTableContainer');
+            const listEl = document.getElementById('returnsList');
+            const noRequestsEl = document.getElementById('noRequests');
+            
+            // --- HARDCODED EXAMPLE DATA ---
+            const exampleRequests = [
+                {
+                    id: 'R1002',
+                    orderId: '54321-9876',
+                    requestType: 'return',
+                    reason: 'Received incorrect item',
+                    status: 'Processing (Return initiated)',
+                    submittedAt: { toDate: () => new Date('2025-11-11T10:00:00Z') }
+                },
+                {
+                    id: 'R1001',
+                    orderId: '12345-6789',
+                    requestType: 'return',
+                    reason: 'Item arrived damaged/defective',
+                    status: 'Pending Review',
+                    submittedAt: { toDate: () => new Date('2025-11-10T14:30:00Z') } 
+                },
+                {
+                    id: 'R1000',
+                    orderId: '98765-4321',
+                    requestType: 'refund',
+                    reason: 'Item not received/Cancelled',
+                    status: 'Completed (Refunded)',
+                    submittedAt: { toDate: () => new Date('2025-11-05T09:00:00Z') }
+                },
+                {
+                    id: 'R0999',
+                    orderId: '11223-3445',
+                    requestType: 'return',
+                    reason: 'Item description was inaccurate',
+                    status: 'Rejected',
+                    submittedAt: { toDate: () => new Date('2025-11-01T15:45:00Z') }
+                }
+            ];
+
+
+            // Helper function to format timestamp
+            function formatDate(timestamp) {
+                if (!timestamp) return 'N/A';
+                // Note: The toDate check is for the simulated Firestore Timestamp object
+                if (timestamp.toDate) { 
+                    return timestamp.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                }
+                return 'Processing...';
+            }
+
+            // Helper function to render status pill
+            function getStatusPill(status) {
+                let statusClass = 'status-pending';
+                let displayText = status || 'N/A';
+                
+                if (status) {
+                    const lowerStatus = status.toLowerCase();
+                    if (lowerStatus.includes('completed') || lowerStatus.includes('refunded')) {
+                        statusClass = 'status-completed';
+                    } else if (lowerStatus.includes('processing') || lowerStatus.includes('in review') || lowerStatus.includes('initiated')) {
+                        statusClass = 'status-processing';
+                    } else if (lowerStatus.includes('rejected')) {
+                        statusClass = 'status-rejected';
+                    }
+                }
+                return `<span class="${statusClass}">${displayText}</span>`;
+            }
+
+            // --- DATA RENDERER ---
+            function renderRequests(requests) {
+                listEl.innerHTML = ''; 
+                
+                if (requests.length === 0) {
+                    tableContainerEl.style.display = 'none';
+                    noRequestsEl.style.display = 'block';
+                    return;
+                }
+
+                // Sort locally by submittedAt descending (most recent first)
+                requests.sort((a, b) => {
+                    const timeA = a.submittedAt && a.submittedAt.toDate ? a.submittedAt.toDate().getTime() : 0;
+                    const timeB = b.submittedAt && b.submittedAt.toDate ? b.submittedAt.toDate().getTime() : 0;
+                    return timeB - timeA;
+                });
+
+                requests.forEach(req => {
+                    const row = listEl.insertRow();
+                    row.innerHTML = `
+                        <td>#${req.id}</td>
+                        <td>${req.orderId || 'N/A'}</td>
+                        <td>${req.requestType === 'return' ? 'Return' : 'Refund'}</td>
+                        <td>${req.reason || 'Not specified'}</td>
+                        <td>${formatDate(req.submittedAt)}</td>
+                        <td>${getStatusPill(req.status)}</td>
+                    `;
+                });
+
+                noRequestsEl.style.display = 'none';
+                tableContainerEl.style.display = 'block';
+            }
+
+            // --- IMMEDIATE EXECUTION ---
+            (function initializePage() {
+                // No loading element to hide, rendering starts immediately
+                renderRequests(exampleRequests); 
+            })();
+
+        </script>
+	</body>
+</html>

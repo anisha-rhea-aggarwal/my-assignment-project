@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Ahmad Razak - USMart</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100%;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .chat-window {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        /* 1. Main Purple Header */
+        .chat-header.main {
+            display: flex;
+            align-items: center;
+            padding: 20px 20px 16px;
+            background: linear-gradient(135deg, #4c2e71 0%, #6b4a8f 50%, #8b5fbf 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(76, 46, 113, 0.2);
+            position: relative;
+        }
+
+        .chat-header.main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header-icon { 
+            font-size: 28px; 
+            margin-right: 14px;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header-title {
+            z-index: 1;
+        }
+
+        .header-title h4 { 
+            margin: 0; 
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p { 
+            margin: 2px 0 0; 
+            font-size: 12px; 
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        /* 2. Contact Sub-Header - Premium design */
+        .chat-header.contact {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-back-btn {
+            font-size: 20px;
+            color: #4c2e71;
+            margin-right: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-back-btn:hover {
+            background: #f3f0f7;
+            transform: translateX(-3px);
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5fbf 0%, #6b4a8f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 12px;
+            box-shadow: 0 4px 12px rgba(107, 74, 143, 0.3);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(46, 204, 113, 0.4);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 2px 6px rgba(46, 204, 113, 0.4); }
+            50% { box-shadow: 0 2px 12px rgba(46, 204, 113, 0.8); }
+        }
+
+        .contact-info { 
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .contact-info h5 { 
+            margin: 0; 
+            font-size: 16px; 
+            font-weight: 600;
+            color: #1f2937;
+            letter-spacing: -0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-info p { 
+            margin: 3px 0 0; 
+            font-size: 13px; 
+            color: #2ecc71;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info p::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #2ecc71;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .contact-icons { 
+            display: flex; 
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .contact-icons i { 
+            font-size: 19px; 
+            color: #4c2e71;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-icons i:hover {
+            background: #f3f0f7;
+            transform: translateY(-2px);
+        }
+
+        /* 3. Messages Area - Beautiful chat bubbles */
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #fafbfc 0%, #f5f7fa 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Custom scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            font-size: 15px;
+            font-weight: 500;
+            position: relative;
+            animation: messageSlideIn 0.3s ease-out;
+            word-wrap: break-word;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Added class for system/info messages */
+        .message.info {
+            max-width: 100%;
+            text-align: center;
+            background: #e6e0f0; /* Light purple/grey background */
+            color: #4c2e71;
+            align-self: center;
+            border-radius: 8px;
+            font-size: 14px;
+            padding: 8px 16px;
+            margin: 8px 0;
+            font-weight: 600;
+        }
+
+
+        .message-time {
+            font-size: 11px;
+            color: rgba(0,0,0,0.4);
+            margin-top: 6px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .message.sender {
+            background: #ffffff;
+            color: #1f2937;
+            align-self: flex-start;
+            border: 1px solid #e5e7eb;
+            border-top-left-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .message.sender .message-time {
+            color: rgba(0,0,0,0.35);
+        }
+
+        .message.receiver {
+            background: linear-gradient(135deg, #4c2e71 0%, #6b4a8f 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(76, 46, 113, 0.25);
+        }
+
+        .message.receiver .message-time {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-radius: 18px;
+            border-top-left-radius: 4px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #9ca3af;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* 4. Input Form - Modern and sleek */
+        .chat-input-form {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            background: #ffffff;
+            border-top: 1px solid #f0f0f5;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+        }
+
+        .chat-input-form button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .chat-input-form button:hover {
+            background: #f3f4f6;
+            color: #4c2e71;
+            transform: scale(1.1);
+        }
+
+        .chat-input-form button[type="submit"] {
+            color: #4c2e71;
+        }
+
+        .chat-input-form button[type="submit"]:hover {
+            background: linear-gradient(135deg, #4c2e71 0%, #6b4a8f 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(76, 46, 113, 0.3);
+        }
+
+        .chat-input-form input {
+            flex-grow: 1;
+            border: 2px solid transparent;
+            background: #f7f8fb;
+            border-radius: 24px;
+            padding: 12px 18px;
+            font-size: 15px;
+            margin: 0 10px;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-form input:focus {
+            background: #ffffff;
+            border-color: #4c2e71;
+            box-shadow: 0 4px 12px rgba(76, 46, 113, 0.1);
+        }
+
+        .chat-input-form input::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        /* Date separator */
+        .date-separator {
+            text-align: center;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .date-separator span {
+            background: #e5e7eb;
+            color: #6b7280;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Empty state */
+        .empty-chat {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .empty-chat i {
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .empty-chat p {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .chat-window {
+                border-radius: 0;
+                max-width: 100%;
+            }
+
+            .chat-header.main,
+            .chat-header.contact {
+                border-radius: 0;
+            }
+
+            .message {
+                max-width: 85%;
+                font-size: 14px;
+            }
+
+            .contact-info h5 {
+                font-size: 15px;
+            }
+        }
+
+        /* Smooth scroll behavior */
+        .chat-messages {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-window">
+        
+        <header class="chat-header main">
+            <i class="fa fa-comments-o header-icon"></i>
+            <div class="header-title">
+                <h4>Messages</h4>
+                <p>USMart Chat</p>
+            </div>
+        </header>
+
+        <div class="chat-header contact">
+            <a href="chat.html" class="contact-back-btn">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            
+            <div class="avatar">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="contact-info" id="contact-info">
+                <h5>Ahmad Razak</h5>
+                <p>Active now</p>
+            </div>
+            <div class="contact-icons">
+                <i class="fa fa-phone" title="Voice call"></i>
+                <i class="fa fa-video-camera" title="Video call"></i>
+                <i class="fa fa-ellipsis-v" title="More options"></i>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="messages-container">
+            <div class="date-separator">
+                <span>Today</span>
+            </div>
+
+            <div class="message sender">
+                Hi! I saw your MacBook listing
+                <div class="message-time">10:30 AM</div>
+            </div>
+            <div class="message receiver">
+                Hello! Yes, it's still available
+                <div class="message-time">10:32 AM</div>
+            </div>
+            <div class="message sender">
+                Is the MacBook still available?
+                <div class="message-time">10:35 AM</div>
+            </div>
+            <div class="message sender">
+                Can we meet tomorrow?
+                <div class="message-time">10:36 AM</div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="empty-chat">
+            <i class="fa fa-comments-o"></i>
+            <p>Start a conversation</p>
+        </div>
+
+        <form class="chat-input-form" id="chat-form">
+            <button type="button" title="Attach file">
+                <i class="fa fa-paperclip"></i>
+            </button>
+            <button type="button" title="Send image">
+                <i class="fa fa-picture-o"></i>
+            </button>
+            <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
+            <button type="submit" title="Send message">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </form>
+
+    </div>
+    
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message-input');
+        const messagesContainer = document.getElementById('messages-container');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const contactInfoEl = document.getElementById('contact-info');
+        
+        // --- HARDCODED MOCK DATA FOR DYNAMIC CONTENT ---
+        const mockRequests = [
+            { id: 'R-7890', buyerName: 'User-001', reason: 'Item arrived damaged/defective', product: 'MacBook Air' },
+            { id: 'R-7891', buyerName: 'User-002', reason: 'Received incorrect item', product: 'Sony Headphones' },
+            { id: 'R-7892', buyerName: 'User-003', reason: 'Item description was inaccurate', product: 'MacBook Pro' },
+            { id: 'R-7893', buyerName: 'User-004', reason: 'Received too late', product: 'Asus Laptop' },
+            // Add more mock data as needed to simulate the dashboard data
+        ];
+        
+        // --- UTILITY FUNCTIONS ---
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let m;
+            while (m = regex.exec(queryString)) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+            return params;
+        }
+
+        function createMessage(text, type, prepend = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', type);
+            
+            if (type !== 'info') {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                messageDiv.innerHTML = `${text}<div class="message-time">${timeString}</div>`;
+            } else {
+                messageDiv.innerHTML = text;
+            }
+
+            if (prepend && messagesContainer.firstElementChild) {
+                // Prepend logic: insert at the very beginning of the container
+                messagesContainer.insertBefore(messageDiv, messagesContainer.firstElementChild);
+            } else {
+                // Append logic: insert just before the typing indicator
+                messagesContainer.insertBefore(messageDiv, typingIndicator);
+            }
+            scrollToBottom();
+        }
+
+        // --- DYNAMIC CONTENT INJECTION ---
+        function initializeDynamicContent() {
+            const params = getUrlParams();
+            const requestId = params.request;
+            const buyerId = params.buyer;
+
+            if (requestId) {
+                // 1. Find the corresponding mock request details
+                const requestDetails = mockRequests.find(req => req.id === requestId);
+                
+                // 2. Update Contact Header
+                if (requestDetails) {
+                    contactInfoEl.querySelector('h5').textContent = requestDetails.buyerName;
+                } else {
+                    contactInfoEl.querySelector('h5').textContent = buyerId || 'Buyer';
+                }
+
+                // 3. Insert the info message (System Message) at the bottom
+                const infoText = requestDetails 
+                    ? `Initiated chat for Return Request: #${requestId} (Reason: ${requestDetails.reason}, Product: ${requestDetails.product || 'N/A'})`
+                    : `Initiated chat for Return Request: #${requestId} (Buyer: ${buyerId || 'N/A'})`;
+                
+                // Use prepend=false (default) to insert at the bottom
+                createMessage(infoText, 'info', false); 
+                
+                // 4. Insert the opening message (Seller's first message) at the bottom
+                const openingMessageText = requestDetails 
+                    ? `Hello ${requestDetails.buyerName}, I'm following up on your return request #${requestId} for the ${requestDetails.product}. I wanted to discuss the issue regarding the "${requestDetails.reason}".`
+                    : `Hello, I'm reaching out regarding your return request #${requestId}. How can I assist you with this matter?`;
+                    
+                // Use prepend=false (default) to insert at the bottom
+                createMessage(openingMessageText, 'receiver', false); 
+                
+            } else {
+                // If no params, original hardcoded messages are used.
+            }
+        }
+        
+        // --- ORIGINAL CHAT LOGIC ---
+
+        // Submit message
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const messageText = messageInput.value.trim();
+
+            if (messageText !== '') {
+                // Use createMessage to send the user's message (which also defaults to inserting at the bottom)
+                createMessage(messageText, 'receiver'); 
+                messageInput.value = '';
+                
+                // Simulate typing indicator
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                }, 2000);
+            }
+        });
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = 'block';
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Add haptic feedback on mobile
+        messageInput.addEventListener('focus', function() {
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        });
+
+        // Animate messages on load
+        window.addEventListener('load', () => {
+            initializeDynamicContent(); // Run dynamic injection first
+            scrollToBottom();
+            console.log('✨ USMart Conversation loaded successfully');
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Esc to clear input
+            if (e.key === 'Escape') {
+                messageInput.value = '';
+                messageInput.blur();
+            }
+        });
+
+        // Auto-resize input on mobile
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+        });
+
+        // Click effects for buttons
+        const buttons = document.querySelectorAll('.chat-input-form button, .contact-icons i, .contact-back-btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
+        });
+    </script>
+
+</body>
+</html>

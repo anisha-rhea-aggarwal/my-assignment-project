@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>USMart - My Profile</title>
+
+ 		<!-- Google font -->
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+ 		<!-- Bootstrap -->
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+ 		<!-- Font Awesome Icon -->
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+ 		<!-- Custom stlylesheet -->
+ 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+        <style>
+            /* Custom styles inherited from previous profile.html */
+            .section {
+                padding: 40px 0;
+            }
+            .profile-card {
+                background: #fff;
+                border: 1px solid #E4E7ED;
+                padding: 30px;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                margin-bottom: 20px;
+            }
+            .profile-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                border-bottom: 2px solid #E4E7ED;
+                padding-bottom: 20px;
+            }
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-color: #4c2e71; /* USMart purple */
+                color: #fff;
+                font-size: 36px;
+                text-align: center;
+                line-height: 80px;
+                margin-right: 20px;
+            }
+            .profile-info h3 {
+                margin: 0;
+                color: #4c2e71;
+                font-weight: 700;
+            }
+            .profile-info p {
+                margin: 5px 0 0;
+                color: #8D99AE;
+            }
+            .detail-row {
+                padding: 10px 0;
+                border-bottom: 1px dashed #eee;
+            }
+            .detail-label {
+                font-weight: 600;
+                color: #4c2e71;
+            }
+            .detail-value {
+                color: #333;
+            }
+            .btn-edit, .btn-save, .btn-cancel {
+                font-weight: 600;
+            }
+            .primary-btn-usm {
+                background-color: #4c2e71;
+                color: #FFF;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                transition: 0.3s;
+            }
+            .primary-btn-usm:hover {
+                background-color: #f68714;
+            }
+            /* Style for the edit form state */
+            .edit-mode .detail-value {
+                display: none;
+            }
+            .view-mode .form-group {
+                display: none;
+            }
+            .edit-mode .form-group {
+                margin-bottom: 15px;
+            }
+           
+          .floating-chat-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #D10024; 
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 28px;
+            line-height: 60px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1050; 
+            transition: all 0.3s;
+          }
+
+          .floating-chat-btn:hover {
+            background-color: #E74C3C;
+            color: #FFF;
+            transform: scale(1.1);
+          }
+          
+          /* Style for the modal iframe */
+          #chatModal .modal-body {
+            padding: 0;
+          }
+          #chatModal iframe {
+            width: 100%;
+            height: 70vh; 
+            border: none;
+          }
+          /* Custom styles for icon spacing in the header */
+          .header-ctn .account-item,
+          .header-ctn .dropdown {
+            margin-left: 15px; /* Add spacing between action icons */
+          }
+      
+        </style>
+
+    </head>
+	<body>
+		<header>
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left">
+                <li><a href="#"><i class="fa fa-phone"></i> +60-4-653-3888</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> support@usmart.usm.my</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> Universiti Sains Malaysia</a></li>
+            </ul>
+            <ul class="header-links pull-right">
+                <li id="SellerLink"><a href="profile.html"><i class="fa fa-tag"></i> Start Selling</a></li>
+                <li id="loginLink"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+                <li id="signupLink"><a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+
+                <li id="userAccount" style="display: none;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user-o"></i> My Account
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="my-listings.html"><i class="fa fa-list"></i> My Listings</a></li>
+                        <li><a href="orders.html"><i class="fa fa-list-alt"></i> Order List</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="logout.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="index.html" class="logo">
+                            <div class="usmart-text-logo">USM<span>art</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9 clearfix">
+                    <div class="header-ctn d-flex justify-content-end align-items-center">
+
+                        <div>
+                            <a href="mysale.html" class="account-link">
+                                <i class="fa fa-money fa-lg" aria-hidden="true"></i>
+                                <span>My Sale</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="returnseller.html" class="account-link">
+                                <i class="fa fa-refresh fa-lg" aria-hidden="true"></i>
+                                <span>Seller Returns</span>
+                            </a>
+                        </div>
+                        <div class="account-item">
+                            <a href="addItem.html" class="account-link">
+                                <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                            </a>
+                            <div class="account-label" color="#fff"> Sell / Add Item</div>
+                        </div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+		
+
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">My Profile</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">Profile</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION: PROFILE CONTENT -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <div class="profile-avatar"><i class="fa fa-user"></i></div>
+                                <div class="profile-info">
+                                    <h3 id="displayName">John Doe (Mock User)</h3>
+                                    <p id="displayEmail">john.doe@student.usm.my</p>
+                                </div>
+                                <button id="editProfileBtn" class="primary-btn pull-right btn-edit"><i class="fa fa-pencil"></i> Edit Profile</button>
+                            </div>
+                            
+                            <form id="profileForm">
+                                <div id="viewMode" class="view-mode">
+                                    <div class="detail-row">
+                                        <div class="detail-label">Full Name</div>
+                                        <div class="detail-value" id="viewName">John Doe</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Phone Number</div>
+                                        <div class="detail-value" id="viewPhone">+6012-3456789</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Desasiswa / Campus</div>
+                                        <div class="detail-value" id="viewCampus">Desasiswa Aman Damai, Main Campus</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Member Since</div>
+                                        <div class="detail-value" id="viewJoinDate">October 2023</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Total Listings</div>
+                                        <div class="detail-value" id="viewListings">5 active items</div>
+                                    </div>
+                                </div>
+                                
+                                <div id="editMode" class="edit-mode" style="display: none;">
+                                    <div class="section-title">
+                                        <h4 class="title" style="font-weight: 700; color: #D10024;">Edit Account Details</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editName">Full Name</label>
+                                        <input type="text" class="input" id="editName" value="John Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPhone">Phone Number</label>
+                                        <input type="tel" class="input" id="editPhone" value="+6012-3456789">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editCampus">Desasiswa / Campus</label>
+                                        <input type="text" class="input" id="editCampus" value="Desasiswa Aman Damai, Main Campus">
+                                    </div>
+
+                                    <div class="section-title" style="margin-top: 30px;">
+                                        <h4 class="title" style="font-weight: 700; color: #4c2e71;">Change Password</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPasswordOld">Current Password</label>
+                                        <input type="password" class="input" id="editPasswordOld" placeholder="Enter current password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPasswordNew">New Password</label>
+                                        <input type="password" class="input" id="editPasswordNew" placeholder="Enter new password">
+                                    </div>
+
+                                    <div id="saveFeedback" class="alert" style="display: none; margin-top: 15px;"></div>
+                                    
+                                    <div class="pull-right">
+                                        <button type="button" id="cancelEditBtn" class="primary-btn btn-cancel" style="background-color: #6c757d; margin-right: 10px;">Cancel</button>
+                                        <button type="submit" id="saveProfileBtn" class="primary-btn primary-btn-usm btn-save">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION: PROFILE CONTENT -->
+        
+		<!-- NEWSLETTER -->
+		<div id="newsletter" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<form>
+								<input class="input" type="email" placeholder="Enter Your Email">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /NEWSLETTER -->
+
+		<!-- FOOTER -->
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">About Us</h3>
+								<p>USMart is USM's trusted student marketplace for buying and selling secondhand items. We connect students across campus to trade electronics, furniture, books, and more in a safe and convenient platform. Save money, reduce waste, and support your fellow students with USMart!</p>
+								<ul class="footer-links">
+									<li><a href="#"><i class="fa fa-map-marker"></i>Universiti Sains Malaysia</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+60-4-653-3888</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>support@usmart.usm.my</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Categories</h3>
+								<ul class="footer-links">
+									<li><a href="#">Hot deals</a></li>
+									<li><a href="#">Laptops</a></li>
+									<li><a href="#">Smartwatches</a></li>
+									<li><a href="#">Cameras</a></li>
+									<li><a href="#">Headphones</a></li>
+									<li><a href="#">Smartphones</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="clearfix visible-xs"></div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Information</h3>
+								<ul class="footer-links">
+									<li><a href="#">About Us</a></li>
+									<li><a href="#">Contact Us</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="#">Orders and Returns</a></li>
+									<li><a href="#">Terms & Conditions</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Service</h3>
+								<ul class="footer-links">
+									<li><a href="#">My Account</a></li>
+									<li><a href="#">View Cart</a></li>
+									<li><a href="#">Wishlist</a></li>
+									<li><a href="#">Track My Order</a></li>
+									<li><a href="#">Help</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+
+			</div>
+			<!-- /top footer -->
+
+			<!-- bottom footer -->
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							</ul>
+							<span class="copyright">
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</span>
+						</div>
+					</div>
+						<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /bottom footer -->
+		</footer>
+		<!-- /FOOTER -->
+
+
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+
+    
+		
+        
+        <script>
+            // Mock data initialization
+            const mockUserData = {
+                name: "John Doe",
+                email: "john.doe@student.usm.my",
+                phone: "+6012-3456789",
+                campus: "Desasiswa Aman Damai, Main Campus",
+                joinDate: "October 2023",
+                listings: "5 active items"
+            };
+
+            // Function to populate view mode with data
+            function populateViewMode(data) {
+                document.getElementById('displayName').textContent = data.name;
+                document.getElementById('displayEmail').textContent = data.email;
+                document.getElementById('viewName').textContent = data.name;
+                document.getElementById('viewPhone').textContent = data.phone;
+                document.getElementById('viewCampus').textContent = data.campus;
+                document.getElementById('viewJoinDate').textContent = data.joinDate;
+                document.getElementById('viewListings').textContent = data.listings;
+            }
+
+            // Function to populate edit mode inputs
+            function populateEditMode(data) {
+                document.getElementById('editName').value = data.name;
+                document.getElementById('editPhone').value = data.phone;
+                document.getElementById('editCampus').value = data.campus;
+                // Clear password fields on opening edit mode
+                document.getElementById('editPasswordOld').value = '';
+                document.getElementById('editPasswordNew').value = '';
+            }
+
+            // Function to switch view
+            function toggleEditMode(isEdit) {
+                const viewMode = document.getElementById('viewMode');
+                const editMode = document.getElementById('editMode');
+                const editButton = document.getElementById('editProfileBtn');
+                const profileCard = document.querySelector('.profile-card');
+                const saveFeedback = document.getElementById('saveFeedback');
+                
+                profileCard.classList.remove('view-mode', 'edit-mode');
+                
+                if (isEdit) {
+                    profileCard.classList.add('edit-mode');
+                    viewMode.style.display = 'none';
+                    editMode.style.display = 'block';
+                    editButton.style.display = 'none';
+                    populateEditMode(mockUserData);
+                } else {
+                    profileCard.classList.add('view-mode');
+                    viewMode.style.display = 'block';
+                    editMode.style.display = 'none';
+                    editButton.style.display = 'block';
+                    saveFeedback.style.display = 'none';
+                }
+            }
+            
+            // Event Listeners
+            document.addEventListener('DOMContentLoaded', () => {
+                populateViewMode(mockUserData);
+                toggleEditMode(false); // Start in view mode
+
+                document.getElementById('editProfileBtn').addEventListener('click', () => {
+                    toggleEditMode(true);
+                });
+
+                document.getElementById('cancelEditBtn').addEventListener('click', () => {
+                    toggleEditMode(false);
+                });
+                
+                document.getElementById('profileForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const saveFeedback = document.getElementById('saveFeedback');
+                    const saveBtn = document.getElementById('saveProfileBtn');
+                    
+                    saveBtn.textContent = 'Saving...';
+                    saveBtn.disabled = true;
+                    saveFeedback.style.display = 'none';
+
+                    // --- MOCK SAVE LOGIC ---
+                    const newName = document.getElementById('editName').value.trim();
+                    const newPhone = document.getElementById('editPhone').value.trim();
+                    const newCampus = document.getElementById('editCampus').value.trim();
+                    
+                    if (!newName || !newPhone) {
+                        saveFeedback.textContent = 'Name and Phone cannot be empty.';
+                        saveFeedback.className = 'alert alert-danger';
+                        saveFeedback.style.display = 'block';
+                        saveBtn.textContent = 'Save Changes';
+                        saveBtn.disabled = false;
+                        return;
+                    }
+                    
+                    // Simulate API call delay
+                    setTimeout(() => {
+                        // Update mock data
+                        mockUserData.name = newName;
+                        mockUserData.phone = newPhone;
+                        mockUserData.campus = newCampus;
+                        
+                        // Show success message
+                        saveFeedback.textContent = 'Profile updated successfully!';
+                        saveFeedback.className = 'alert alert-success';
+                        saveFeedback.style.display = 'block';
+                        
+                        // Re-render and switch back to view mode after a delay
+                        populateViewMode(mockUserData);
+                        saveBtn.textContent = 'Save Changes';
+                        saveBtn.disabled = false;
+                        
+                        setTimeout(() => {
+                            toggleEditMode(false);
+                        }, 1500);
+
+                    }, 1000);
+                    // --- END MOCK SAVE LOGIC ---
+                });
+            });
+        </script>
+        <a href="#" class="floating-chat-btn" data-toggle="modal" data-target="#chatModal">
+            <i class="fa fa-comments"></i>
+        </a>
+
+        <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="chatModalLabel">Chat</h4>
+              </div>
+              <div class="modal-body">
+                <iframe src="chat.html"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+	</body>
+</html>

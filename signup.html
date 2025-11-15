@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sign Up - USMart</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+		body {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 400;
+			color: #333;
+			background: linear-gradient(135deg, #4c2e71 0%, #6b4a8f 100%);
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 20px 0;
+		}
+
+		.auth-container {
+			max-width: 480px;
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.auth-card {
+			background: #fff;
+			border-radius: 10px;
+			box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+			padding: 40px;
+			margin: 20px;
+		}
+
+		.auth-header {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.auth-logo {
+			font-size: 36px;
+			font-weight: 700;
+			color: #4c2e71;
+			margin-bottom: 10px;
+		}
+
+		.auth-logo span {
+			color: #f68714;
+		}
+
+		.auth-subtitle {
+			color: #8D99AE;
+			font-size: 14px;
+			margin-bottom: 0;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-group label {
+			font-weight: 500;
+			font-size: 14px;
+			color: #2B2D42;
+			margin-bottom: 8px;
+		}
+
+		.form-control {
+			height: 45px;
+			padding: 10px 15px;
+			border: 1px solid #E4E7ED;
+			border-radius: 5px;
+			font-size: 14px;
+			transition: 0.3s;
+		}
+
+		.form-control:focus {
+			border-color: #4c2e71;
+			box-shadow: 0 0 0 3px rgba(76, 46, 113, 0.1);
+			outline: none;
+		}
+
+		.btn-primary {
+			width: 100%;
+			height: 45px;
+			background-color: #4c2e71;
+			border: none;
+			border-radius: 5px;
+			color: #FFF;
+			text-transform: uppercase;
+			font-weight: 700;
+			font-size: 14px;
+			transition: 0.3s;
+			margin-top: 10px;
+		}
+
+		.btn-primary:hover {
+			background-color: #3d2459;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(76, 46, 113, 0.3);
+		}
+
+		.divider {
+			text-align: center;
+			margin: 25px 0;
+			position: relative;
+		}
+
+		.divider:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 100%;
+			height: 1px;
+			background: #E4E7ED;
+		}
+
+		.divider span {
+			position: relative;
+			background: #fff;
+			padding: 0 15px;
+			color: #8D99AE;
+			font-size: 13px;
+			font-weight: 500;
+		}
+
+		.btn-google {
+			width: 100%;
+			height: 45px;
+			background-color: #fff;
+			border: 2px solid #E4E7ED;
+			border-radius: 5px;
+			color: #333;
+			font-weight: 600;
+			font-size: 14px;
+			transition: 0.3s;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+		}
+
+		.btn-google:hover {
+			border-color: #4c2e71;
+			background-color: #f9f9f9;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		.btn-google img {
+			width: 20px;
+			height: 20px;
+		}
+
+		.password-toggle {
+			position: relative;
+		}
+
+		.password-toggle .toggle-icon {
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			cursor: pointer;
+			color: #8D99AE;
+			font-size: 16px;
+		}
+
+		.password-toggle .toggle-icon:hover {
+			color: #4c2e71;
+		}
+
+		.checkbox-group {
+			display: flex;
+			align-items: flex-start;
+			gap: 8px;
+			margin: 15px 0;
+		}
+
+		.checkbox-group input[type="checkbox"] {
+			margin-top: 3px;
+			cursor: pointer;
+		}
+
+		.checkbox-group label {
+			font-size: 13px;
+			font-weight: 400;
+			color: #555;
+			margin: 0;
+			cursor: pointer;
+		}
+
+		.checkbox-group a {
+			color: #4c2e71;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		.checkbox-group a:hover {
+			text-decoration: underline;
+		}
+
+		.auth-footer {
+			text-align: center;
+			margin-top: 25px;
+			padding-top: 25px;
+			border-top: 1px solid #E4E7ED;
+		}
+
+		.auth-footer p {
+			color: #8D99AE;
+			font-size: 14px;
+			margin: 0;
+		}
+
+		.auth-footer a {
+			color: #4c2e71;
+			font-weight: 600;
+			text-decoration: none;
+		}
+
+		.auth-footer a:hover {
+			color: #f68714;
+		}
+
+		.error-message {
+			display: none;
+			padding: 10px 15px;
+			background-color: #fee;
+			border: 1px solid #fcc;
+			border-radius: 5px;
+			color: #c33;
+			font-size: 13px;
+			margin-bottom: 15px;
+		}
+
+		.success-message {
+			display: none;
+			padding: 10px 15px;
+			background-color: #efe;
+			border: 1px solid #cfc;
+			border-radius: 5px;
+			color: #3c3;
+			font-size: 13px;
+			margin-bottom: 15px;
+		}
+
+		.usm-badge {
+			display: inline-block;
+			background: linear-gradient(135deg, #4c2e71 0%, #f68714 100%);
+			color: white;
+			padding: 3px 10px;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: 600;
+			margin-left: 5px;
+		}
+
+		@media only screen and (max-width: 480px) {
+			.auth-card {
+				padding: 30px 20px;
+				margin: 10px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="auth-container">
+		<div class="auth-card">
+			<!-- Header -->
+			<div class="auth-header">
+				<h1 class="auth-logo">USM<span>art</span></h1>
+				<p class="auth-subtitle">Join USM's Student Marketplace</p>
+			</div>
+
+			<!-- Error/Success Messages -->
+			<div id="errorMessage" class="error-message"></div>
+			<div id="successMessage" class="success-message"></div>
+
+			<!-- Google Sign Up -->
+			<button type="button" class="btn-google" id="googleSignUpBtn">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M19.6 10.227c0-.709-.064-1.39-.182-2.045H10v3.868h5.382a4.6 4.6 0 01-1.996 3.018v2.51h3.232c1.891-1.742 2.982-4.305 2.982-7.35z" fill="#4285F4"/>
+					<path d="M10 20c2.7 0 4.964-.895 6.618-2.423l-3.232-2.509c-.895.6-2.04.955-3.386.955-2.605 0-4.81-1.76-5.595-4.123H1.064v2.59A9.996 9.996 0 0010 20z" fill="#34A853"/>
+					<path d="M4.405 11.9c-.2-.6-.314-1.24-.314-1.9 0-.66.114-1.3.314-1.9V5.51H1.064A9.996 9.996 0 000 10c0 1.614.386 3.14 1.064 4.49l3.34-2.59z" fill="#FBBC05"/>
+					<path d="M10 3.977c1.468 0 2.786.505 3.823 1.496l2.868-2.868C14.959.99 12.695 0 10 0 6.09 0 2.71 2.24 1.064 5.51l3.34 2.59C5.19 5.736 7.395 3.977 10 3.977z" fill="#EA4335"/>
+				</svg>
+				Sign up with Google
+			</button>
+
+			<div class="divider">
+				<span>OR</span>
+			</div>
+
+			<!-- Sign Up Form -->
+			<form id="signUpForm">
+				<div class="form-group">
+					<label for="fullName">Full Name</label>
+					<input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+				</div>
+
+				<div class="form-group">
+					<label for="email">USM Email <span class="usm-badge">@student.usm.my</span></label>
+					<input type="email" class="form-control" id="email" placeholder="yourname@student.usm.my" required>
+				</div>
+
+				<div class="form-group">
+					<label for="matric">Matric Number</label>
+					<input type="text" class="form-control" id="matric" placeholder="Enter your matric number" required>
+				</div>
+
+				<div class="form-group">
+					<label for="phone">Phone Number</label>
+					<input type="tel" class="form-control" id="phone" placeholder="+60 12-345 6789" required>
+				</div>
+
+				<div class="form-group">
+					<label for="password">Password</label>
+					<div class="password-toggle">
+						<input type="password" class="form-control" id="password" placeholder="Create a strong password" required>
+						<i class="fa fa-eye-slash toggle-icon" id="togglePassword"></i>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="confirmPassword">Confirm Password</label>
+					<div class="password-toggle">
+						<input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter your password" required>
+						<i class="fa fa-eye-slash toggle-icon" id="toggleConfirmPassword"></i>
+					</div>
+				</div>
+
+				<div class="checkbox-group">
+					<input type="checkbox" id="terms" required>
+					<label for="terms">
+						I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+					</label>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Create Account</button>
+			</form>
+
+			<!-- Footer -->
+			<div class="auth-footer">
+				<p>Already have an account? <a href="login.html">Log In</a></p>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script>
+		// Password Toggle
+		$('#togglePassword').click(function() {
+			const passwordInput = $('#password');
+			const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
+			passwordInput.attr('type', type);
+			$(this).toggleClass('fa-eye-slash fa-eye');
+		});
+
+		$('#toggleConfirmPassword').click(function() {
+			const passwordInput = $('#confirmPassword');
+			const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
+			passwordInput.attr('type', type);
+			$(this).toggleClass('fa-eye-slash fa-eye');
+		});
+
+		// Form Validation and Submission
+		$('#signUpForm').submit(function(e) {
+			e.preventDefault();
+			
+			// Hide previous messages
+			$('#errorMessage, #successMessage').hide();
+			
+			// Get form values
+			const fullName = $('#fullName').val().trim();
+			const email = $('#email').val().trim().toLowerCase();
+			const matric = $('#matric').val().trim();
+			const phone = $('#phone').val().trim();
+			const password = $('#password').val();
+			const confirmPassword = $('#confirmPassword').val();
+			const terms = $('#terms').is(':checked');
+			
+			// Validation
+			if (!fullName || !email || !matric || !phone || !password || !confirmPassword) {
+				showError('Please fill in all fields');
+				return;
+			}
+			
+			// Email validation (USM email)
+			if (!email.endsWith('@student.usm.my')) {
+				showError('Please use your USM student email (@student.usm.my)');
+				return;
+			}
+			
+			// Password match validation
+			if (password !== confirmPassword) {
+				showError('Passwords do not match');
+				return;
+			}
+			
+			// Password strength validation
+			if (password.length < 8) {
+				showError('Password must be at least 8 characters long');
+				return;
+			}
+			
+			// Terms validation
+			if (!terms) {
+				showError('Please agree to the Terms of Service and Privacy Policy');
+				return;
+			}
+			
+			// Prepare data for backend
+			const userData = {
+				fullName: fullName,
+				email: email,
+				matricNumber: matric,
+				phone: phone,
+				password: password
+			};
+			
+			console.log('Sign up data:', userData);
+			
+			// TODO: Send to backend API
+			// Example:
+			// $.ajax({
+			//     url: '/api/auth/signup',
+			//     method: 'POST',
+			//     data: JSON.stringify(userData),
+			//     contentType: 'application/json',
+			//     success: function(response) {
+			//         showSuccess('Account created successfully! Redirecting...');
+			//         setTimeout(function() {
+			//             window.location.href = 'login.html';
+			//         }, 2000);
+			//     },
+			//     error: function(xhr) {
+			//         showError(xhr.responseJSON?.message || 'Sign up failed. Please try again.');
+			//     }
+			// });
+			
+			// Temporary success message (remove when backend is ready)
+			showSuccess('Account created successfully! (Backend not connected yet)');
+		});
+
+		// Google Sign Up
+		$('#googleSignUpBtn').click(function() {
+			console.log('Google Sign Up clicked');
+			
+			// TODO: Implement Google OAuth
+			// Example:
+			// window.location.href = '/api/auth/google';
+			
+			// Temporary alert (remove when backend is ready)
+			alert('Google Sign Up will be connected to backend OAuth flow');
+		});
+
+		// Helper functions
+		function showError(message) {
+			$('#errorMessage').text(message).fadeIn();
+			setTimeout(function() {
+				$('#errorMessage').fadeOut();
+			}, 5000);
+		}
+
+		function showSuccess(message) {
+			$('#successMessage').text(message).fadeIn();
+		}
+
+		// Email domain auto-completion
+		$('#email').on('input', function() {
+			let value = $(this).val();
+			if (value.includes('@') && !value.includes('@student.usm.my')) {
+				// User is typing domain, suggest USM domain
+				if (!value.endsWith('.my') && !value.endsWith('.com')) {
+					// Could add auto-suggestion here
+				}
+			}
+		});
+	</script>
+</body>
+</html>

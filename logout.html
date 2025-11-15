@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Log Out - USMart</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+		body {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 400;
+			color: #333;
+			background: linear-gradient(135deg, #4c2e71 0%, #6b4a8f 100%);
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 20px 0;
+		}
+
+		.auth-container {
+			max-width: 450px;
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.auth-card {
+			background: #fff;
+			border-radius: 10px;
+			box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+			padding: 40px;
+			margin: 20px;
+			text-align: center;
+		}
+
+		.logout-icon {
+			width: 80px;
+			height: 80px;
+			background: linear-gradient(135deg, #4c2e71 0%, #f68714 100%);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 20px;
+			animation: fadeInScale 0.5s ease;
+		}
+
+		.logout-icon i {
+			font-size: 36px;
+			color: white;
+		}
+
+		@keyframes fadeInScale {
+			from {
+				opacity: 0;
+				transform: scale(0.5);
+			}
+			to {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+
+		.auth-logo {
+			font-size: 32px;
+			font-weight: 700;
+			color: #4c2e71;
+			margin-bottom: 15px;
+		}
+
+		.auth-logo span {
+			color: #f68714;
+		}
+
+		.logout-message {
+			color: #2B2D42;
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 10px;
+		}
+
+		.logout-subtitle {
+			color: #8D99AE;
+			font-size: 14px;
+			margin-bottom: 30px;
+		}
+
+		.btn-group-logout {
+			display: flex;
+			gap: 15px;
+			margin-top: 30px;
+		}
+
+		.btn-logout {
+			flex: 1;
+			height: 45px;
+			border: none;
+			border-radius: 5px;
+			font-weight: 700;
+			font-size: 14px;
+			text-transform: uppercase;
+			transition: 0.3s;
+			cursor: pointer;
+		}
+
+		.btn-primary-logout {
+			background-color: #4c2e71;
+			color: #FFF;
+		}
+
+		.btn-primary-logout:hover {
+			background-color: #3d2459;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(76, 46, 113, 0.3);
+		}
+
+		.btn-secondary-logout {
+			background-color: #fff;
+			color: #4c2e71;
+			border: 2px solid #4c2e71;
+		}
+
+		.btn-secondary-logout:hover {
+			background-color: #f9f9f9;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		.logout-footer {
+			margin-top: 30px;
+			padding-top: 25px;
+			border-top: 1px solid #E4E7ED;
+		}
+
+		.quick-links {
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+			flex-wrap: wrap;
+		}
+
+		.quick-links a {
+			color: #8D99AE;
+			font-size: 13px;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+
+		.quick-links a:hover {
+			color: #4c2e71;
+		}
+
+		.success-state {
+			display: none;
+		}
+
+		.success-state.active {
+			display: block;
+			animation: fadeIn 0.5s ease;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		.spinner {
+			display: none;
+			margin: 20px auto;
+			width: 40px;
+			height: 40px;
+			border: 4px solid #E4E7ED;
+			border-top: 4px solid #4c2e71;
+			border-radius: 50%;
+			animation: spin 1s linear infinite;
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		@media only screen and (max-width: 480px) {
+			.auth-card {
+				padding: 30px 20px;
+				margin: 10px;
+			}
+
+			.btn-group-logout {
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="auth-container">
+		<div class="auth-card">
+			<!-- Initial State -->
+			<div id="logoutConfirmation">
+				<div class="logout-icon">
+					<i class="fa fa-sign-out"></i>
+				</div>
+
+				<h1 class="auth-logo">US<span>Mart</span></h1>
+				
+				<p class="logout-message">Are you sure you want to log out?</p>
+				<p class="logout-subtitle">You'll need to log in again to access your account</p>
+
+				<div class="btn-group-logout">
+					<button type="button" class="btn-logout btn-secondary-logout" id="cancelBtn">
+						<i class="fa fa-times"></i> Cancel
+					</button>
+					<button type="button" class="btn-logout btn-primary-logout" id="confirmLogoutBtn">
+						<i class="fa fa-sign-out"></i> Log Out
+					</button>
+				</div>
+
+				<div class="logout-footer">
+					<div class="quick-links">
+						<a href="index.html"><i class="fa fa-home"></i> Home</a>
+						<a href="store.html"><i class="fa fa-shopping-bag"></i> Browse Items</a>
+						<a href="contact.html"><i class="fa fa-envelope"></i> Contact</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Loading State -->
+			<div id="loadingState" style="display: none;">
+				<div class="spinner"></div>
+				<p style="color: #8D99AE; margin-top: 20px;">Logging you out...</p>
+			</div>
+
+			<!-- Success State -->
+			<div id="successState" class="success-state">
+				<div class="logout-icon" style="background: linear-gradient(135deg, #34A853 0%, #4CAF50 100%);">
+					<i class="fa fa-check"></i>
+				</div>
+
+				<h1 class="auth-logo">US<span>Mart</span></h1>
+				
+				<p class="logout-message">You've been logged out successfully</p>
+				<p class="logout-subtitle">Thanks for using USMart. See you soon!</p>
+
+				<div style="margin-top: 30px;">
+					<a href="login.html" class="btn-logout btn-primary-logout" style="display: inline-block; text-decoration: none; padding: 12px 40px; line-height: 45px;">
+						<i class="fa fa-sign-in"></i> Log In Again
+					</a>
+				</div>
+
+				<div class="logout-footer">
+					<div class="quick-links">
+						<a href="index.html"><i class="fa fa-home"></i> Home</a>
+						<a href="store.html"><i class="fa fa-shopping-bag"></i> Browse Items</a>
+						<a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script>
+		// Check if user is logged in
+		$(document).ready(function() {
+			const authToken = localStorage.getItem('authToken');
+			
+			// If not logged in, redirect to login page
+			if (!authToken) {
+				window.location.href = 'login.html';
+				return;
+			}
+		});
+
+		// Cancel button - go back to previous page
+		$('#cancelBtn').click(function() {
+			// Go back to previous page or home
+			if (document.referrer) {
+				window.history.back();
+			} else {
+				window.location.href = 'index.html';
+			}
+		});
+
+		// Confirm Logout
+		$('#confirmLogoutBtn').click(function() {
+			// Show loading state
+			$('#logoutConfirmation').hide();
+			$('#loadingState').show();
+			$('.spinner').show();
+
+			console.log('Logging out...');
+
+			// TODO: Call backend logout API
+			// Example:
+			// $.ajax({
+			//     url: '/api/auth/logout',
+			//     method: 'POST',
+			//     headers: {
+			//         'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+			//     },
+			//     success: function(response) {
+			//         performLogout();
+			//     },
+			//     error: function(xhr) {
+			//         // Even if API fails, clear local data
+			//         performLogout();
+			//     }
+			// });
+
+			// Simulate API call (remove when backend is ready)
+			setTimeout(function() {
+				performLogout();
+			}, 1500);
+		});
+
+		function performLogout() {
+			// Clear all authentication data
+			localStorage.removeItem('authToken');
+			localStorage.removeItem('userData');
+			localStorage.removeItem('cartItems');
+			localStorage.removeItem('wishlistItems');
+			
+			// Clear session storage
+			sessionStorage.clear();
+			
+			// Clear any cookies if needed
+			// document.cookie.split(";").forEach(function(c) { 
+			//     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+			// });
+
+			console.log('Logout successful - all data cleared');
+
+			// Show success state
+			$('#loadingState').hide();
+			$('#successState').addClass('active');
+
+			// Auto-redirect to login page after 3 seconds
+			setTimeout(function() {
+				window.location.href = 'login.html';
+			}, 3000);
+		}
+
+		// Handle browser back button
+		window.addEventListener('popstate', function(event) {
+			// Prevent going back to logged-in pages
+			const authToken = localStorage.getItem('authToken');
+			if (!authToken) {
+				window.location.href = 'login.html';
+			}
+		});
+	</script>
+</body>
+</html>
