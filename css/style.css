@@ -1590,6 +1590,11 @@ textarea.input {
   font-size: 12px;
 }
 
+/* Fix for filtered product layout */
+#store .row.is-filtered > .clearfix {
+  display: none !important;
+}
+
 /*=========================================================
 	08 -> PRODUCT DETAILS PAGE
 ===========================================================*/

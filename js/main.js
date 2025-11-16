@@ -13,6 +13,7 @@
 	});
 
 	// Filter products based on selected category from dropdown and/or sidebar and price range and brand
+	// Filter products based on selected category from dropdown and/or sidebar and price range and brand
 	function filterProducts() {
 		var selectedText = $('.header-search select option:selected').text().trim();
 		var products = $('.product');
@@ -41,25 +42,49 @@
 			}).text().trim();
 			filterBrands.push(label);
 		});
+		
+		
+		// --- START OF NEW FIX ---
+		// Select the main product row
+		var $storeProductsRow = $('#store .row').first();
+
+		// Check if any filter is active
+		var isFiltered = (filterCategories.length > 0 || 
+						  filterBrands.length > 0 || 
+						  minPrice !== 1 || 
+						  maxPrice !== 1900);
+
+		if (isFiltered) {
+			// If filters are active, add a class to the row
+			$storeProductsRow.addClass('is-filtered');
+		} else {
+			// If no filters, remove the class
+			$storeProductsRow.removeClass('is-filtered');
+		}
+		// --- END OF NEW FIX ---
+
 
 		// Filter products
 		products.each(function() {
-			var product = $(this);
-			var productCategory = product.find('.product-category').text();
-			var productBrand = product.find('.product-brand').text();
-			var productPriceText = product.find('.product-price').text();
-			var productPrice = parseFloat(productPriceText.replace(/[^\d.]/g, '')) || 0;
+    	var product = $(this);
+    	var wrapper = product.closest('.col-md-4.col-xs-6');
 
-			var categoryMatch = filterCategories.length === 0 || filterCategories.includes(productCategory);
-			var brandMatch = filterBrands.length === 0 || filterBrands.includes(productBrand);
-			var priceMatch = productPrice >= minPrice && productPrice <= maxPrice;
+		var productCategory = product.find('.product-category').text().trim();
+    	var productBrand = product.find('.product-brand').text().trim();
+    	var productPriceText = product.find('.product-price').text();
+    	var productPrice = parseFloat(productPriceText.replace(/[^\d.]/g, '')) || 0;
 
-			if (categoryMatch && brandMatch && priceMatch) {
-				product.show();
-			} else {
-				product.hide();
-			}
-		});
+    	var categoryMatch = filterCategories.length === 0 || filterCategories.includes(productCategory);
+    	var brandMatch = filterBrands.length === 0 || filterBrands.includes(productBrand);
+    	var priceMatch = productPrice >= minPrice && productPrice <= maxPrice;
+
+    	if (categoryMatch && brandMatch && priceMatch) {
+        	wrapper.show();
+    	} else {
+        	wrapper.hide();
+    	}	
+	});
+
 	}
 
 	// Update breadcrumb based on current filter state
