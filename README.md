@@ -1,6 +1,6 @@
 # USMart - Student Marketplace
 
-![USMart Logo](img/logo.png)
+![USMart Logo](screenshot/logo.png)
 
 ## 🎓 About USMart
 
@@ -33,9 +33,6 @@ USMart is USM's trusted student marketplace platform designed for buying and sel
 
 ### Homepage
 ![Homepage](screenshot/home.png)
-
-### Product Listing
-![Store Page](screenshot/store.png)
 
 ### Shopping Cart
 ![Cart](screenshot/cart.png)
