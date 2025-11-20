@@ -15,17 +15,11 @@
 	// Filter products based on selected category from dropdown and/or sidebar and price range and brand
 	// Filter products based on selected category from dropdown and/or sidebar and price range and brand
 	function filterProducts() {
-		var selectedText = $('.header-search select option:selected').text().trim();
 		var products = $('.product');
 		var filterCategories = [];
 		var filterBrands = [];
 		var minPrice = parseFloat($('#price-min').val()) || 1;
 		var maxPrice = parseFloat($('#price-max').val()) || 1900;
-
-		// Add dropdown selection if not "All Categories"
-		if (selectedText !== 'All Categories') {
-			filterCategories.push(selectedText);
-		}
 
 		// Add checked sidebar categories
 		$('.category-checkbox input:checked').each(function() {
@@ -118,21 +112,22 @@
 		}
 
 		$('.breadcrumb-tree').html(breadcrumbHtml);
-		filterProducts();
+		// filterProducts(); // Removed to prevent hiding products on breadcrumb update
 	}
 
 	// Initialize breadcrumb on page load
 	updateBreadcrumb();
 	filterProducts();
 
-	// Update breadcrumb on category change
-	$('.header-search select').on('change', function() {
-		updateBreadcrumb();
-	});
+	// Update breadcrumb on category change (if there's a header search select)
+	// $('.header-search select').on('change', function() {
+	// 	updateBreadcrumb();
+	// });
 
 	// Update filter on sidebar checkbox change
 	$('.input-checkbox input').on('change', function() {
 		updateBreadcrumb();
+		filterProducts();
 	});
 
 	// Update filter on price submit button click
@@ -290,6 +285,7 @@
 		priceSlider.noUiSlider.on('update', function( values, handle ) {
 			var value = values[handle];
 			handle ? priceInputMax.value = value : priceInputMin.value = value
+			filterProducts();
 		});
 	}
 
